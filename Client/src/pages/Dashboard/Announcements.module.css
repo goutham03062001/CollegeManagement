@@ -1,0 +1,46 @@
+.card_footer_wrapper{
+    display: flex;
+    width:100%;
+    height:100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.card{
+    position: relative;
+}
+.btn_announcement {
+  background: #5E5DF0;
+  border-radius: 10px;
+  box-shadow: #5E5DF0 0 10px 20px -10px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-family: Inter,Helvetica,"Apple Color Emoji","Segoe UI Emoji",NotoColorEmoji,"Noto Color Emoji","Segoe UI Symbol","Android Emoji",EmojiSymbols,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans",sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 24px;
+  opacity: 1;
+  outline: 0 solid transparent;
+  padding: 10px 28px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: fit-content;
+  word-break: break-word;
+  border: 0;
+}
+
+.top_style{
+
+}
+
+.top_style{
+    position: absolute;
+    top:0;
+    right:0;
+    background-color: red;
+    width: 50px;
+    height:50px;
+    border-radius: 999px;
+}

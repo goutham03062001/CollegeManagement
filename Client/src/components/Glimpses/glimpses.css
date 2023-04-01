@@ -1,0 +1,11 @@
+.image_caption{
+    position: absolute;
+    right:0;
+    bottom: 0;
+    opacity: 0.6;
+    color:red;
+    font-size: 20px;
+}
+.glimp_img{
+    opacity: 0.8;
+}

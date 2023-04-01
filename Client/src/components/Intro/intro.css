@@ -1,0 +1,75 @@
+/* .intro_ctn{
+    width:100vw;
+    height: 100vh;
+} */
+
+.intro_background{
+    width:100vw;
+    height:40vh;
+    /* background-image: url("../../Assets/MyWebBackground.jpg"); */
+    position: absolute;
+    opacity: 0.2;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.right-intro-text{
+    text-align: justify;
+    line-height: 35px;
+}
+.welcome{
+    animation: move;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+.intro_right{
+   margin-top:50%;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+}
+.intro_right_bottom{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height:70%;
+}
+.intro_btns{
+    display: flex;
+    flex-direction:row;
+    justify-content: space-around;
+    
+}
+.brand{
+    font-family: cursive;
+}
+@media only screen and (min-width:768px){
+    .intro_btns{
+    /* background-color: red; */
+    /* height:30vh; */
+        margin-top:10%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        /* gap:30px; */
+        align-items: center;
+        width:99%;
+    }
+   
+}
+@media only screen and (max-width:400px){
+    .intro_btns{
+        height:30vh;
+        margin-top:10%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        gap:30px;
+        align-items: center;
+        width:99%;
+    }
+    .into_social_btn{
+        width:85%;
+        height:5vh;
+    }
+}
