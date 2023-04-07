@@ -9,10 +9,10 @@ const Login = ({login, isAuthenticated,message, user,isLoading}) => {
   
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  
 
   //alerts
   const [customAlert, setCustomAlert] = useState("");
+
 
   const submitForm = (e) => {
     setCustomAlert('');
@@ -27,6 +27,7 @@ const Login = ({login, isAuthenticated,message, user,isLoading}) => {
     login({email,password});
   };
   
+  
   if(isAuthenticated && user){
     // setCustomAlert(message);
     return <Navigate to="/WelcomePage"/>
@@ -37,6 +38,7 @@ const Login = ({login, isAuthenticated,message, user,isLoading}) => {
   };
   return (
     <div className="container">
+    
       <div className="row">
         <div className="col-lg-7 col-12 col-sm-12 form">
           <form onSubmit={submitForm}>

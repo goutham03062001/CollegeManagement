@@ -11,9 +11,10 @@ import Classes from "./WelcomePage.module.css";
 import ContactForm from "../ContactForm/ContactForm";
 // import Editor from "./Editor"
 import UploadedPhotos from "../../components/UploadedPhotos/UploadedPhotos";
-import SocialAccounts from "../../components/SocialAccounts/SocialAccounts";
+// import SocialAccounts from "../../components/SocialAccounts/SocialAccounts";
+import UploadCollegePhotos from "./UploadCollegePhotos";
 import Announcements from "./Announcements";
-
+import UploadedCollegePhotos from "./UploadedCollegePhotos";
 const WelcomePage = ({
   user,
   isLoading,
@@ -59,7 +60,7 @@ const WelcomePage = ({
                       setState("uploadPhotos");
                     }}
                   >
-                    Uploaded Photos
+                    Uploaded Papers
                   </a>
                 </li>
 
@@ -93,6 +94,18 @@ const WelcomePage = ({
                     }}
                   >
                     Upload College Photos
+                  </a>
+                </li>
+
+
+                <li className="nav nav-item">
+                  <a
+                    className={Classes.navLink}
+                    onClick={(e) => {
+                      setState("UploadedCollegePhotos");
+                    }}
+                  >
+                    Uploaded College Photos
                   </a>
                 </li>
 
@@ -144,12 +157,22 @@ const WelcomePage = ({
                               ) : (
                                 <>
                                   {user && state === "UploadCollegePhotos" ? (
-                                    <SocialAccounts/>
+                                    <UploadCollegePhotos/>
                                   ) : (
                                     <>
                                       {user && state === "ContactForm" ? <>
                                         <ContactForm/>
-                                      </> : <div style={{display:"none"}}>hello</div>}
+                                      </> : 
+                                      
+                                      <>
+                                      {
+                                        user && state==="UploadedCollegePhotos" ? <>
+                                          <UploadedCollegePhotos/>
+                                        </> : <></>
+                                      }
+
+                                      </>
+                                      }
                                     </>
                                   )}
                                 </>

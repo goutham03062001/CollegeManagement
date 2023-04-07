@@ -1,18 +1,17 @@
-
 import React, { useState } from "react";
-import {Alert, Upload} from "antd";
-import PropTypes from 'prop-types';
-import {connect} from "react-redux";
+import { Alert, Upload } from "antd";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import { uploadExamPaper } from "../../actions/ExamPapers";
-const UploadExamPapers = ({uploadExamPaper,paper}) => {
+const UploadExamPapers = ({ uploadExamPaper, paper }) => {
   const [groupName, setGroupName] = useState("");
   const [year, setYear] = useState("");
   const [subjectName, setSubjectName] = useState("");
   const [photo, setPhoto] = useState();
-  const[yearOfHappened,setYearOfHappened] = useState();
-  const[imageUrl,setImageUrl] = useState('');
+  const [yearOfHappened, setYearOfHappened] = useState();
+  const [imageUrl, setImageUrl] = useState("");
   const [isUploaded, setIsUploaded] = useState(false);
-  const[isPressed,setIsPressed] = useState(false);
+  const [isPressed, setIsPressed] = useState(false);
 
   var myImageUrl = "";
   const submitFormDetails = (e) => {
@@ -32,28 +31,24 @@ const UploadExamPapers = ({uploadExamPaper,paper}) => {
         console.log("imageUrl : ", data.secure_url);
         myImageUrl = data.secure_url;
         setImageUrl(data.secure_url);
-          
-        
-          uploadExamPaper({imageUrl:myImageUrl
-            ,groupName,subjectName,year});
-        
+
+        uploadExamPaper({ imageUrl: myImageUrl, groupName, subjectName, year });
+
         setIsUploaded(true);
-        
       })
       .catch((error) => {
         console.log("Error Occurred While Uploading photo : ", error.message);
       });
-      console.log("Group Name : ", groupName);
-      console.log("Year : ", year);
-      console.log("Subject Name : ", subjectName);
-      console.log("Phot URL : ", imageUrl);
-      
-      //send to backend
-    
-      if(paper){
-        console.log("Your Paper Obj ",paper);
-      }
-      
+    console.log("Group Name : ", groupName);
+    console.log("Year : ", year);
+    console.log("Subject Name : ", subjectName);
+    console.log("Phot URL : ", imageUrl);
+
+    //send to backend
+
+    if (paper) {
+      console.log("Your Paper Obj ", paper);
+    }
   };
   return (
     <>
@@ -90,25 +85,33 @@ const UploadExamPapers = ({uploadExamPaper,paper}) => {
               </button>
             </div>
             <div class="modal-body">
-            {
-              isUploaded && paper ? <>
-                <Alert
-                  message="Details Uploaded Successfully"
-                  type="success"
-                  showIcon
-                  closable
-                />
-              </>:<p></p>
-            }
-            { isPressed && !paper && !isUploaded ? <>
-              <Alert
-                message="Details Uploading, please wait..."
-                type="info"
-                
-
-              />
-            </>:<></>}
-              <form onSubmit={ (e)=>{submitFormDetails(e)} }>
+              {isUploaded && paper ? (
+                <>
+                  <Alert
+                    message="Details Uploaded Successfully"
+                    type="success"
+                    showIcon
+                    closable
+                  />
+                </>
+              ) : (
+                <p></p>
+              )}
+              {isPressed && !paper && !isUploaded ? (
+                <>
+                  <Alert
+                    message="Details Uploading, please wait..."
+                    type="info"
+                  />
+                </>
+              ) : (
+                <></>
+              )}
+              <form
+                onSubmit={(e) => {
+                  submitFormDetails(e);
+                }}
+              >
                 <div class="form-group">
                   <label for="recipient-name" class="col-form-label">
                     Group Name:
@@ -159,13 +162,11 @@ const UploadExamPapers = ({uploadExamPaper,paper}) => {
                   <input
                     class="form-control"
                     type="file"
-                    
                     onChange={(e) => {
                       setPhoto(e.target.files[0]);
                     }}
                   />
                 </div>
-
 
                 <div class="form-group">
                   <label for="message-text" class="col-form-label">
@@ -181,44 +182,38 @@ const UploadExamPapers = ({uploadExamPaper,paper}) => {
                   />
                 </div>
                 <div class="modal-footer">
-              <button
-                type="submit"
-                onClick={(e)=>{
-                  setGroupName('');
-                  setYear('');
-                  setPhoto('');
-                  setYearOfHappened();
-                  setSubjectName('');
-                }}
-                class="btn btn-secondary"
-                data-dismiss="modal"
-                
-              >
-                Close
-              </button>
-              {
-
-                 isUploaded&&paper  ? <>
-
-                
-                </>:<>
-                <button
-                type="submit"
-                class="btn btn-primary"
-                
-              >
-                {isUploaded && imageUrl && isPressed ? "Success":"Upload"}
-              </button>
-                </>
-              }
-            </div>
+                  <button
+                    type="submit"
+                    onClick={(e) => {
+                      setGroupName("");
+                      setYear("");
+                      setPhoto("");
+                      setYearOfHappened();
+                      setSubjectName("");
+                    }}
+                    class="btn btn-secondary"
+                    data-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  {isUploaded && paper ? (
+                    <></>
+                  ) : (
+                    <>
+                      <button type="submit" class="btn btn-primary">
+                        {isUploaded && imageUrl && isPressed
+                          ? "Success"
+                          : "Upload"}
+                      </button>
+                    </>
+                  )}
+                </div>
               </form>
             </div>
-            
           </div>
         </div>
       </div>
-              <hr/>
+      <hr />
       <div className="uploads">
         <p>Your Past Uploads </p>
       </div>
@@ -227,13 +222,11 @@ const UploadExamPapers = ({uploadExamPaper,paper}) => {
 };
 
 UploadExamPapers.propTypes = {
-  paper : PropTypes.object
-}
+  paper: PropTypes.object,
+};
 
-const mapStateToProps = ((state)=>({
-  paper : state.exampaper.paper
-}))
+const mapStateToProps = (state) => ({
+  paper: state.exampaper.paper,
+});
 
-
-
-export default connect(mapStateToProps,{uploadExamPaper})(UploadExamPapers);
+export default connect(mapStateToProps, { uploadExamPaper })(UploadExamPapers);

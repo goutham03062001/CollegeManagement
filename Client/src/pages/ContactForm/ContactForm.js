@@ -12,7 +12,10 @@ const ContactForm = ({ sendIssue, isLoading, isSubmitted }) => {
   const [longitude, setLongitude] = useState("");
 
   const [success, setSuccess] = useState(false);
+  const[alert,setCustomAlert] = useState(null);
+  const[clicked,setClicked] = useState(false);
 
+  const[closeAlert,setCloseAlert] = useState(true);
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function (position) {
       let latitude = position.coords.latitude;
@@ -26,16 +29,32 @@ const ContactForm = ({ sendIssue, isLoading, isSubmitted }) => {
     e.preventDefault();
     console.log(problem);
     console.log(description);
-    sendIssue({ problem, description, latitude, longitude });
+    setClicked(true);
+    if(problem!=="" && description!==""){
+      sendIssue({ problem, description, latitude, longitude });
+      setCloseAlert(false);
 
-    if (isSubmitted && !isLoading) {
+      
+      setSuccess(false);
+    }
+    else{
+      console.log("Please Fill all the details...");
+      setCustomAlert("Please Fill all the details..");
+    }
+    if(!isLoading && isSubmitted){
       setSuccess(true);
-      console.log("showing alert");
     }
   };
-
+  
   return (
     <div>
+      {(clicked===true && alert!==null) && (problem==="" || description==="")? 
+      <Alert
+      severity="error"
+      onClose={()=>setClicked(false)}
+      >
+        <AlertTitle>Please Fill All the details.</AlertTitle>
+      </Alert> : <></>}
       {isSubmitted && success ? (
         <>
           <div className="my-3">
@@ -45,7 +64,9 @@ const ContactForm = ({ sendIssue, isLoading, isSubmitted }) => {
           </div>
         </>
       ) : (
-        <></>
+        <>
+          
+        </>
       )}
       <form onSubmit={(e) => submitForm(e)}>
         <div className="form-group">

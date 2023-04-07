@@ -13,16 +13,13 @@ import { Provider } from 'react-redux';
 import { SetAuthToken } from './utils/SetAuthToken';
 import { LoadUser } from './actions/auth';
 
-if(localStorage.getItem('token')){
-  SetAuthToken(localStorage.getItem('token'));
-}
-
 const App = () => {
-  
-
   useEffect(()=>{
+    if(localStorage.token){
+      SetAuthToken(localStorage.token);
+    }
     store.dispatch(LoadUser());
-  });
+  },[]);
   
   return (
     <Provider store = {store}>

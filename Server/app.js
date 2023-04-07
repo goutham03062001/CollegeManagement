@@ -7,6 +7,7 @@ const Admin = require("./routers/Students");
 const ExamPaper = require("./routers/ExamPapers");
 const ContactForm = require("./routers/Contact");
 const Announcement = require("./routers/Announcements");
+const UploadCollegePhoto = require("./routers/UploadCollegePhotos");
 const port = process.env.PORT || 5000;
 const conn = require("./connections/conn");
 //middlewares
@@ -19,5 +20,5 @@ app.use("/api/admin",Admin);
 app.use("/api/admin/exam",ExamPaper);
 app.use("/api/admin/Contact",ContactForm);
 app.use("/api/admin/announcement",Announcement);
-
+app.use("/api/admin/UploadCollegePhoto",UploadCollegePhoto);
 app.listen(port,()=>{console.log("You are working on : ",port)})
